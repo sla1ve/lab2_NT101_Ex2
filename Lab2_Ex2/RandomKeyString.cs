@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,7 +25,7 @@ namespace Lab2_Ex2
             if (n <= 3) return true;
             if (n % 2 == 0) return false;
             for (long i = 3; i <= Math.Sqrt(n); i += 2)
-            {
+            {   
                 if (n % i == 0) return false;
             }
             return true;
@@ -36,9 +37,9 @@ namespace Lab2_Ex2
             return GCD(b, a % b);
         }
 
-        private long Mod(long a, long b, long c)
+        private long Mod(BigInteger a, long b, long c)
         {
-            long x = 1, y = a;
+            long x = 1, y = (long)a;
             while (b > 0)
             {
                 if (b % 2 == 1)
@@ -60,7 +61,7 @@ namespace Lab2_Ex2
         {
             richTextBox7.Clear();
 
-            string plaintext = richTextBox6.Text; // Lấy chuỗi văn bản từ richTextBox6
+            string plaintext = richTextBox6.Text;
             long publicKey = long.Parse(richTextBox4.Text.Trim());
             long n = long.Parse(richTextBox3.Text.Trim());
 
@@ -147,10 +148,11 @@ namespace Lab2_Ex2
 
             foreach (string cipherChar in cipherChars)
             {
-                long cipherValue = long.Parse(cipherChar);
-                long plainValue = Mod(cipherValue, privateKey, n);
-                char plainChar = (char)plainValue;
-                plainText.Append(plainChar);
+                string cipherValue = cipherChar.Trim();
+                BigInteger bigCipherValue = BigInteger.Parse(cipherChar);
+                //long plainValue = Mod(bigCipherValue, privateKey, n);
+                //char plainChar = (char)plainValue;
+                plainText.Append(bigCipherValue);
             }
 
             return plainText.ToString();

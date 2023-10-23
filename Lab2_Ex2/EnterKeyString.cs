@@ -55,9 +55,9 @@ namespace Lab2_Ex2
             richTextBox3.Clear();
             richTextBox5.Clear();
 
-            long p = long.Parse(richTextBox1.Text); // Nhập giá trị p từ TextBox
-            long q = long.Parse(richTextBox2.Text); // Nhập giá trị q từ TextBox
-            long publicKey = long.Parse(richTextBox4.Text); // Nhập giá trị e từ TextBox
+            long p = long.Parse(richTextBox1.Text);
+            long q = long.Parse(richTextBox2.Text);
+            long publicKey = long.Parse(richTextBox4.Text);
 
             if (!IsPrime(p) || !IsPrime(q) || !IsPrime(publicKey))
             {
